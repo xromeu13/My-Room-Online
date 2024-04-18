@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard-styles.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/" class="home-button">Home</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Booking Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Check-in Date</th>
+                <th>Hotel Name</th>
+                <th>Room Selected</th>
+                <th>Room Type</th>
+                <th>Customer Email</th>
+            </tr>
+        </thead>
+        <tbody id="booking-table">
+            <!-- Database rows will be inserted here -->
+        </tbody>
+    </table>
+    <script>
+        fetch('/admin-dashboard')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch bookings from the server');
+                return response.json();
+            })
+            .then(data => {
+                const tableBody = document.getElementById('booking-table');
+                data.forEach(booking => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${booking.id}</td>
+                        <td>${booking.booking_number}</td>
+                        <td>${booking.customer_first_name}</td>
+                        <td>${booking.customer_last_name}</td>
+                        <td>${new Date(booking.checkin_date).toLocaleDateString()}</td>
+                        <td>${booking.hotel_name}</td>
+                        <td>${booking.room_selected}</td>
+                        <td>${booking.room_type}</td>
+                        <td>${booking.customer_email}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while loading booking data.');
+            });
+    </script>
+</body>
+</html>

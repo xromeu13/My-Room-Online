@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Selection - SandSky Resorts</title>
+    <link rel="stylesheet" href="room_selection.css">
+</head>
+<body>
+    <div class="header">
+        <span class="company-name">SandSky Resorts</span>
+        <div class="booking-status">
+            <span class="status">STATUS: CONFIRMED </span>
+            <span class="booking-number">BOOKING NUMBER:</span>
+        </div>
+    </div>
+    <div class="customer-greeting">
+        <h1 id="customer-name">Hello,</h1>
+        <p>Your booking at: SandSky Dominicus</p>
+        <p>Payment method: Credit/debit card</p>
+        <p id="room-type">Room:</p>
+    </div>
+    <div class="room-selection-instructions">
+        <h2>Select the room you want from the map</h2>
+        <p>With the SandSky Resorts My Room Online you can choose the room you want to stay in and view the facilities in the interactive hotel floorplan.</p>
+    </div>
+    <div class="map-container">
+        <a href="Javascript:void(0)" onclick="navigateToSelectRoomArea()">
+            <img src="images/20200914_HAC_RESORT-1600070089.jpg" alt="Hotel Map" class="hotel-map"/>
+        </a>
+    </div>
+    <script>
+    const navigateToSelectRoomArea = () => {
+        window.location.href=`select_room_area.html${window.location.search}`
+    }
+    document.addEventListener('DOMContentLoaded', async function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookingNumber = urlParams.get('bookingNumber');
+    const checkInDate = urlParams.get('checkInDate');
+    console.log('Booking Number Received:', bookingNumber); // Add this line
+
+    if (!bookingNumber) {
+        alert('Booking number is required');
+        return;
+    }
+
+    try {
+        const response = await fetch('/get-booking?bookingNumber=' + encodeURIComponent(bookingNumber) + '&checkInDate=' + encodeURIComponent(checkInDate));
+        const data = await response.json();
+        console.log('Data received:', data); // Add this line
+
+        if (response.ok && data.booking) {
+            const bookingDetails = data.booking;
+            document.querySelector('.booking-number').textContent = 'BOOKING NUMBER: ' + bookingDetails.booking_number;
+            document.getElementById('customer-name').textContent = 'Hello, ' + bookingDetails.customer_first_name + ' ' + bookingDetails.customer_last_name;
+            document.getElementById('room-type').textContent = 'Room: ' + bookingDetails.room_type;
+        } else {
+            console.error('Booking data not found:', data.message);
+            alert('Error fetching booking information: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Network or other error:', error);
+        alert('Error fetching booking information: ' + error.message);
+    }
+});
+    </script>
+</body>
+</html>

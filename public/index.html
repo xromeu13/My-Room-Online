@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SandSky Resorts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="branding">
+            <h1>SandSky Resorts</h1>
+        </div>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#hotels-destinations">Hotels & Destinations</a>
+            <a href="#offers">Offers</a>
+            <a href="my_room_online.html">My Room Online</a>
+            <a href="#meetings-events">Meetings & Events</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="search-container">
+                <p class="tagline">Experience the Ultimate in Luxury and Serenity at Riviera Maya.</p>
+                <div class="search-bar">
+                    <input type="text" id="destination" placeholder="Hotel, city, country..." aria-label="Destination">
+                    <input type="text" id="dates" placeholder="Select dates" aria-label="Dates" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                    <div class="counter">
+                        <label for="adults">Adults</label>
+                        <button type="button" onclick="decrement()">-</button>
+                        <input type="number" id="adults" value="2" aria-label="Number of adults" readonly>
+                        <button type="button" onclick="increment()">+</button>
+                    </div>
+                    <button type="submit" class="search-button">Search</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 SandSky Resorts. All Rights Reserved.</p>
+    </footer>
+    </div>
+    
+</body>
+</html>
+

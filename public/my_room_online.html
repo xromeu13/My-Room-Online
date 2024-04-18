@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Room Online - SandSky Resorts</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="my_room_online.css">
+</head>
+<body>
+    <header>
+        <div class="branding">
+            <h1>SandSky Resorts</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <!-- Other navigation links -->
+        </nav>
+    </header>
+
+    <section id="my-room-online" class="room-selection">
+        <div class="container">
+            <h2>Select the room you want from the map</h2>
+            <p>With SandSky Resorts My Room Online, you can choose the room you want to stay in and view the facilities in the interactive hotel floorplan.</p>
+           
+            
+            <div class="room-selection-form">
+                <form id="booking-form">
+                    <label for="booking-number">Booking Code</label>
+                    <input type="text" id="booking-number" name="bookingNumber" placeholder="Enter your booking code" required>
+                    
+                    <label for="check-in-date">Hotel Check-In Date</label>
+                    <input type="date" id="check-in-date" name="checkInDate" required>
+                    
+                    <button type="button" class="btn-select-room" onclick="checkBooking()">Start selecting your room</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Dialog Box -->
+    <div id="custom-dialog" class="custom-dialog">
+        <div class="dialog-content">
+            <p id="dialog-message">Booking does not exist.</p>
+            <button id="dialog-ok-button" class="custom-dialog-ok">OK</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 SandSky Resorts. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function checkBooking() {
+            const bookingNumber = document.getElementById('booking-number').value;
+            const checkInDate = document.getElementById('check-in-date').value; // Corrected typo
+        
+            fetch('/bookingCheck', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ bookingCode: bookingNumber, checkInDate })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = `/room_selection.html?bookingNumber=${bookingNumber}&checkInDate=${checkInDate}`; // Include checkInDate in the URL
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Network error or server is down');
+            });
+        }
+        </script>
+</body>
+</html>

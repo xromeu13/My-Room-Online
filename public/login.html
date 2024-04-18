@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login-styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-option">
+            <h2>Customer Login</h2>
+            <form class="login-form" action="#">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <a href="#" class="forgot-password">Forgot Password?</a> <!-- Include Forgot Password link -->
+            </form>
+        </div>
+        <div class="login-option">
+            <h2>Admin Login</h2>
+            <form class="login-form" action="#">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <a href="#" class="forgot-password">Forgot Password?</a> <!-- Include Forgot Password link -->
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code to differentiate between customer and admin logins
+        document.querySelectorAll('.login-form').forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                var username = this.querySelector('input[type="text"]').value;
+                var password = this.querySelector('input[type="password"]').value;
+
+                if (username === 'admin' && password === 'admin123') {
+                    // Redirect to admin dashboard
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    // Redirect to customer dashboard
+                    window.location.href = 'customer-dashboard.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

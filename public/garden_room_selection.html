@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beach Room Selection - SandSky Resorts</title>
+    <link rel="stylesheet" href="garden_room_selection.css">
+</head>
+<body>
+    <button class="back-to-top" onclick="window.location.href='select_room_area.html'">Back to Select Room Area</button>
+    <div class="room-selection-container">
+        <img src="images/20200914_HAC_FAC_0009.avif" alt="Beach Area" class="beach-area-image" usemap="#beach-map">
+        
+        <map name="beach-map">
+            <!-- Define clickable areas for each room -->
+            <!-- The coords attribute will need the correct values -->
+            <area shape="rect" coords="2000,100,2000,200" alt="Room 121" href="#" data-room-number="121" class="room">
+            <area shape="rect" coords="210,100,310,200" alt="Room 122" href="#" data-room-number="122" class="room">
+            <!-- ... -->
+            <area shape="rect" coords="2200,100,2300,200" alt="Room 136" href="#" data-room-number="136" class="room">
+        </map>
+    </div>
+
+    <div id="room-details" class="room-details">
+        <!-- Room details will be inserted here -->
+    </div>
+
+    <script src="garden_room_selection.js"></script>
+</body>
+</html>

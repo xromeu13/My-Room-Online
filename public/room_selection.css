@@ -1,0 +1,106 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('path-to-your-background-image.jpg'); /* Update with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.header {
+    background-color: rgba(0, 76, 76, 0.85); /* Slightly transparent */
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company-name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.booking-status {
+    font-size: 16px;
+    text-transform: uppercase;
+    display: flex;
+    gap: 10px;
+}
+
+.status {
+    background-color: #008000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.booking-number {
+    background-color: rgba(242, 242, 242, 0.85); /* Slightly transparent */
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.customer-greeting,
+.room-selection-instructions {
+    background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent */
+    margin: 25px auto;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.customer-greeting h1,
+.room-selection-instructions h2 {
+    color: #004c4c;
+    margin: 10px 0;
+}
+
+.map-container {
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.hotel-map {
+    width: 100%;
+    height: auto;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.hotel-map:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .booking-status {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .customer-greeting,
+    .room-selection-instructions,
+    .map-container {
+        width: 90%;
+        margin: 15px auto;
+    }
+
+    .hotel-map:hover {
+        transform: none;
+    }
+}
